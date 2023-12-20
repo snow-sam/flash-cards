@@ -35,7 +35,7 @@ export default function FlashCardSession() {
             key={i}
             className="absolute"
             preventSwipe={['up', 'down']}
-            swipeRequirementType="position"
+            swipeRequirementType="velocity"
             onSwipe={() => setIsDraggin(true)}
             onCardLeftScreen={handleCardLeftScreen}
             onSwipeRequirementUnfulfilled={() => setIsDraggin(false)}

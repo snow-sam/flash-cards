@@ -14,7 +14,7 @@ export default function Home() {
         </div>
         <UserAuthForm />
         <p className="px-8 text-center text-sm text-muted-foreground">
-          Ao continuar, você aceita os nossos{' '}
+          Ao continuar, você aceita os nossos<br/>
           <a
             href="/terms"
             className="underline underline-offset-4 hover:text-primary"
