@@ -29,7 +29,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   return (
     <div className={cn('grid gap-6', className)} {...props}>
       <div className="grid gap-2">
-        <Button variant="outline" type="button" disabled={isLoading}>
+        <Button variant="outline" type="button" disabled={true}>
           {isLoading ? (
             <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
           ) : (
@@ -37,21 +37,13 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
           )}{' '}
           Microsoft
         </Button>
-        <Button variant="outline" type="button" disabled={isLoading}>
+        <Button variant="outline" type="button" disabled={isLoading} onClick={()=>signIn("google", {callbackUrl: '/'})}>
           {isLoading ? (
             <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
           ) : (
             <Icons.google className="mr-2 h-4 w-4" />
           )}{' '}
           Google
-        </Button>
-        <Button variant="outline" type="button" disabled={isLoading}>
-          {isLoading ? (
-            <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-          ) : (
-            <Icons.apple className="mr-2 h-4 w-4" />
-          )}{' '}
-          Apple
         </Button>
         <Button variant="outline" type="button" disabled={isLoading} onClick={()=>signIn("github", {callbackUrl: '/'})}>
           {isLoading ? (
@@ -72,7 +64,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       </div>
       <form onSubmit={onSubmit}>
         <div className="grid gap-2">
-          <Button disabled={isLoading}>
+          <Button disabled={true}>
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
