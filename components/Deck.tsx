@@ -3,7 +3,12 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-export function Deck({ title, imgSrc }) {
+type PropTypeDeck = {
+  title: string,
+  imgSrc: any
+}
+
+export function Deck({ title, imgSrc }: PropTypeDeck) {
   const { push } = useRouter();
 
   return (
