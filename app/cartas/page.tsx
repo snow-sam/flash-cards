@@ -29,9 +29,10 @@ export default function FlashCardSession() {
 
   return (
     <div className="grid overflow-hidden place-items-center w-full h-[100dvh] relative">
-      {cartas.map((carta) => {
+      {cartas.map((carta, i) => {
         return (
           <TinderCard
+            key={i}
             className="absolute"
             preventSwipe={['up', 'down']}
             swipeRequirementType="position"
