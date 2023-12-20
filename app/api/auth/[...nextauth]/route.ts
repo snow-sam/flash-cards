@@ -6,7 +6,6 @@ import DiscordProvider from "next-auth/providers/discord";
 const handler = NextAuth({
     pages: {
         signIn: '/login',
-        error: '/droga'
     },
 
     providers: [
