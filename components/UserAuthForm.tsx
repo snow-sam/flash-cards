@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import { Icons } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
+import { signIn } from 'next-auth/react';
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> { }
 
@@ -52,7 +53,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
           )}{' '}
           Apple
         </Button>
-        <Button variant="outline" type="button" disabled={isLoading}>
+        <Button variant="outline" type="button" disabled={isLoading} onClick={()=>signIn("github", {callbackUrl: '/'})}>
           {isLoading ? (
             <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
           ) : (

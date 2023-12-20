@@ -1,36 +1,18 @@
-import { UserAuthForm } from '@/components/UserAuthForm';
+"use client"
+import { LogOut } from 'lucide-react';
+import AWS from '@/public/aws.svg';
+import { Deck } from '@/components/Deck';
+import { signOut } from 'next-auth/react';
 
 export default function Home() {
   return (
-    <div className="lg:p-8 grid place-items-center h-[100dvh] bg-[#f9f9f8]">
-      <div className="flex p-6 w-full flex-col justify-center space-y-6 sm:w-[350px]">
-        <div className="flex flex-col space-y-2 text-center">
-          <h1 className="text-2xl font-semibold tracking-tight">
-            Bem-vindo ao Flash Card
-          </h1>
-          <p className="text-sm text-muted-foreground">
-            Teste seus conhecimentos com lágrimas
-          </p>
-        </div>
-        <UserAuthForm />
-        <p className="px-8 text-center text-sm text-muted-foreground">
-          Ao continuar, você aceita os nossos<br/>
-          <a
-            href="/terms"
-            className="underline underline-offset-4 hover:text-primary"
-          >
-            Termos de Uso
-          </a>{' '}
-          e{' '}
-          <a
-            href="/privacy"
-            className="underline underline-offset-4 hover:text-primary"
-          >
-            Politicas de Privacidade
-          </a>
-          .
-        </p>
-      </div>
+    <div className="h-[100dvh] bg-[#f9f9f8]">
+      <nav className="flex text-white items-center p-4 justify-end bg-neutral-900 w-full h-[68px]">
+        <LogOut className='cursor-pointer' onClick={signOut}/>
+      </nav>
+      <section className="w-full grid grid-cols-1 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4 py-4">
+        <Deck title="Amazon Web Services" imgSrc={AWS} />
+      </section>
     </div>
   );
 }
