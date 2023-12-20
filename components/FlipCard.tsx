@@ -4,7 +4,14 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
-export const FlipCard = ({ frontContent, backContent, icone, isDraggin }) => {
+type PropTypeFlipCard = {
+  frontContent: string,
+  backContent: string,
+  icone: any,
+  isDraggin: boolean
+}
+
+export const FlipCard = ({ frontContent, backContent, icone, isDraggin }: PropTypeFlipCard) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
 

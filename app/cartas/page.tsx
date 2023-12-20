@@ -15,10 +15,10 @@ const cartas = [
 export default function FlashCardSession() {
   const [isDraggin, setIsDraggin] = useState(false);
 
-  const handleCardLeftScreen = (pos) => {
+  const handleCardLeftScreen = (pos: string) => {
     setIsDraggin(false);
     const conf = {
-      id: Math.random(),
+      id: Math.random().toString(),
       duration: 1000,
       style: { backgroundColor: '#121212', color: 'white' },
     };
