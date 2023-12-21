@@ -1,0 +1,29 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model Baralho {
+  id          String     @id @default(cuid())
+  nome        String
+  imageSvg    String?    @db.LongText
+  cartas      Carta[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model Carta {
+  id          String     @id @default(cuid())
+  pergunta    String
+  resposta    String
+  baralho     Baralho    @relation(fields: [baralhoId], references: [id], onDelete: Cascade)
+  baralhoId   String
+  imageSvg    String?    @db.LongText
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
