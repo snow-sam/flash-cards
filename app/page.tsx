@@ -1,5 +1,6 @@
 import { LogOutButton } from '@/components/LogOut';
 import { Baralho } from '@/components/Baralho';
+import { Uploader } from '@/components/Uploader';
 import { prisma } from '@/lib/prima';
 
 async function getBaralhos() {
@@ -19,6 +20,7 @@ export default async function Home() {
           return <Baralho key={i} baralho={baralho}/>
         })}
       </section>
+      <Uploader/>
     </div>
   );
 }
