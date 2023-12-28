@@ -13,6 +13,7 @@ model Baralho {
   nome        String
   imageSvg    String?    @db.LongText
   cartas      Carta[]
+  usuarios    UsuariosOnBaralhos[]
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
 }
@@ -26,4 +27,20 @@ model Carta {
   imageSvg    String?    @db.LongText
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
+}
+
+model Usuario {
+  id          String     @id @default(cuid())
+  email       String
+  baralhos    UsuariosOnBaralhos[]
+}
+
+model UsuariosOnBaralhos {
+  usuario     Usuario    @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+  usuarioId   String
+  baralho     Baralho    @relation(fields: [baralhoId], references: [id], onDelete: Cascade)
+  baralhoId   String
+  assignedAt  DateTime   @default(now())
+
+  @@id([usuarioId, baralhoId])
 }

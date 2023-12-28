@@ -14,7 +14,7 @@ export default async function Login() {
       <div className="flex p-6 w-full flex-col justify-center space-y-6 sm:w-[350px]">
         <div className="flex flex-col space-y-2 text-center">
           <h1 className="text-2xl font-semibold tracking-tight">
-            Bem-vindo ao Flash Card
+            Bem-vindo ao Flash Cards
           </h1>
           <p className="text-sm text-muted-foreground">
             Teste seus conhecimentos com lágrimas
