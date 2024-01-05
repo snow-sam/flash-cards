@@ -31,7 +31,7 @@ model Carta {
 
 model Usuario {
   id          String     @id @default(cuid())
-  email       String
+  email       String     @unique
   baralhos    UsuariosOnBaralhos[]
 }
 
