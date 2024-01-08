@@ -1,8 +1,7 @@
 import { LogOutButton } from '@/components/LogOut';
 import { Baralho } from '@/components/Baralho';
 import { Uploader } from '@/components/Uploader';
-import { prisma } from '@/lib/prima';
-import { useSession } from "next-auth/react"
+import { prisma } from '@/lib/prisma';
 
 async function getBaralhos() {
   return await prisma.baralho.findMany()
