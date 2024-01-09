@@ -23,9 +23,9 @@ export function Uploader() {
             const data = ({
                 question: record[0],
                 answer: record[1],
-                deckId: 'clqflp6fo0001py9of0c96ns0'
+                deckId: 'clr6v70320001njew91id7azl'
             })
-            await fetch('http://localhost:3000/api/cartas/create', {
+            await fetch('http://localhost:3000/api/create', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {
@@ -33,8 +33,6 @@ export function Uploader() {
                 }
             })
         }
-
-
     };
 
     return (

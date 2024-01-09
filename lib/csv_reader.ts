@@ -6,5 +6,5 @@ export const readFile = async (file: ArrayBuffer) => {
 //const content = await fs.readFile(`${os.tmpdir()}/input.csv`);
 
 // Parse the CSV content
-return parse(Buffer.from(file), {bom: true, delimiter: ';', encoding:'latin1'});
+return parse(Buffer.from(file), {bom: true, delimiter: ';'});
 }
