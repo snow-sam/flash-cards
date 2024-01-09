@@ -1,9 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "@/lib/prisma";
 
-export default async function handler (req: NextApiRequest, res: NextApiResponse) {
-    console.log(req)
-    const {question, answer, deckId } = req.body;
+const POST = async (req: Request, res: NextApiResponse) => {
+    const {question, answer, deckId} = await req.json()
     await prisma.card.create({
         data: {
             question,
@@ -11,6 +10,7 @@ export default async function handler (req: NextApiRequest, res: NextApiResponse
             deckId
         }
     })
-
-    return res.status(201).json({});    
+    return Response.json({question, answer, deckId})
 }
+
+export { POST }

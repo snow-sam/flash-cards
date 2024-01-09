@@ -69,6 +69,8 @@ export const CardComponent = ({ card }: CardProps) => {
             {card.imageSvg && <Image
               className="absolute bottom-6 right-6 w-8"
               src={card.imageSvg}
+              width={8}
+              height={8}
               alt="logotipo da carta"
             />}
 
@@ -81,6 +83,8 @@ export const CardComponent = ({ card }: CardProps) => {
             <span>{card.answer}</span>
             {card.imageSvg && <Image
               className="absolute bottom-6 right-6 w-8"
+              width={8}
+              height={8}
               src={card.imageSvg}
               alt="logotipo da carta"
             />}
