@@ -3,12 +3,12 @@ import { prisma } from "@/lib/prisma";
 
 export default async function handler (req: NextApiRequest, res: NextApiResponse) {
     console.log(req)
-    const {pergunta, resposta, baralhoId } = req.body;
-    await prisma.carta.create({
+    const {question, answer, deckId } = req.body;
+    await prisma.card.create({
         data: {
-            pergunta,
-            resposta,
-            baralhoId
+            question,
+            answer,
+            deckId
         }
     })
 

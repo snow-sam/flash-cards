@@ -1,25 +1,25 @@
-import { Carta } from '@/components/Carta';
+import { CardComponent } from '@/components/Card';
 import { prisma } from '@/lib/prisma';
 
-async function getCartas(baralhoId: string) {
+async function getCards(deckId: string) {
 
-  return await prisma.carta.findMany({
+  return await prisma.card.findMany({
     where: {
-      baralhoId
+      deckId
     }
   })
 }
 
 export default async function FlashCardSession({ params }: { params: { id: string } }) {
   
-  const cartas = await getCartas(params.id)
+  const cards = await getCards(params.id)
 
   return (
     <div className="grid overflow-hidden place-items-center w-full h-[100dvh] relative">
-      {cartas.map((carta, i) => (
-        <Carta
+      {cards.map((card, i) => (
+        <CardComponent
           key={i}
-          carta={carta}
+          card={card}
         />
       ))}
     </div>
