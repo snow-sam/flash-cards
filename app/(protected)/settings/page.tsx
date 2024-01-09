@@ -1,6 +1,9 @@
-const SettingsPage = () => {
+import { auth } from "@/auth"
+
+const SettingsPage = async () => {
+    const session = await auth()
     return (
-        <div>Olá</div>
+        <div>{JSON.stringify(session)}</div>
     )
 } 
 

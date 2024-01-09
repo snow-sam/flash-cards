@@ -40,7 +40,8 @@ export const Carta = ({ carta }: CartaProps) => {
     <TinderCard
       className="absolute"
       preventSwipe={['up', 'down']}
-      swipeRequirementType="velocity"
+      swipeRequirementType="position"
+      swipeThreshold = {20}
       onSwipe={() => setIsDraggin(true)}
       onCardLeftScreen={handleCardLeftScreen}
       onSwipeRequirementUnfulfilled={() => setIsDraggin(false)}

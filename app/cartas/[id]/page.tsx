@@ -1,5 +1,5 @@
 import { Carta } from '@/components/Carta';
-import { prisma } from '@/lib/prima';
+import { prisma } from '@/lib/prisma';
 
 async function getCartas(baralhoId: string) {
 
