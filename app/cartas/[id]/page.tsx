@@ -1,6 +1,5 @@
 import { Carta } from '@/components/Carta';
-import { Toaster } from 'react-hot-toast'
-import { prisma } from '@/lib/prima';
+import { prisma } from '@/lib/prisma';
 
 async function getCartas(baralhoId: string) {
 
@@ -23,7 +22,6 @@ export default async function FlashCardSession({ params }: { params: { id: strin
           carta={carta}
         />
       ))}
-      <Toaster />
     </div>
   );
 }
