@@ -21,9 +21,9 @@ export function Uploader() {
         const parser = await readFile(buffer)
         for await (const record of parser) {
             const data = ({
-                pergunta: record[0],
-                resposta: record[1],
-                baralhoId: 'clqflp6fo0001py9of0c96ns0'
+                question: record[0],
+                answer: record[1],
+                deckId: 'clqflp6fo0001py9of0c96ns0'
             })
             await fetch('http://localhost:3000/api/cartas/create', {
                 method: 'POST',

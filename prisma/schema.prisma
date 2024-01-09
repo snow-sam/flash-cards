@@ -8,56 +8,49 @@ datasource db {
   relationMode = "prisma"
 }
 
-model Baralho {
+model Deck {
+  id          String          @id @default(cuid())
+  name        String
+  imageSvg    String?         @db.LongText
+  cards       Card[]
+  users       UserOnDecks[]
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  answers     Answer[]
+}
+
+model Card {
   id          String     @id @default(cuid())
-  nome        String
+  question    String
+  answer      String
+  deck        Deck       @relation(fields: [deckId], references: [id], onDelete: Cascade)
+  deckId      String
   imageSvg    String?    @db.LongText
-  cartas      Carta[]
-  usuarios    UsuariosOnBaralhos[]
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
-  respostas   Resposta[]
+  answers     Answer[]
 }
 
-model Carta {
-  id          String     @id @default(cuid())
-  pergunta    String
-  resposta    String
-  baralho     Baralho    @relation(fields: [baralhoId], references: [id], onDelete: Cascade)
-  baralhoId   String
-  imageSvg    String?    @db.LongText
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  respostas   Resposta[]
-}
-
-model Usuario {
-  id          String     @id @default(cuid())
-  email       String     @unique
-  baralhos    UsuariosOnBaralhos[]
-  respostas   Resposta[]
-}
-
-model UsuariosOnBaralhos {
-  usuario     Usuario    @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
-  usuarioId   String
-  baralho     Baralho    @relation(fields: [baralhoId], references: [id], onDelete: Cascade)
-  baralhoId   String
+model UserOnDecks {
+  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
+  deck        Deck       @relation(fields: [deckId], references: [id], onDelete: Cascade)
+  deckId      String
   assignedAt  DateTime   @default(now())
 
-  @@id([usuarioId, baralhoId])
+  @@id([userId, deckId])
 }
 
-model Resposta {
+model Answer {
   id          String     @id @default(cuid())
-  baralho     Baralho    @relation(fields: [baralhoId], references: [id], onDelete: Cascade)
-  baralhoId   String
-  usuario     Usuario    @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
-  usuarioId   String
-  carta       Carta      @relation(fields: [cartaId], references: [id], onDelete: Cascade)
-  cartaId     String
+  deck        Deck       @relation(fields: [deckId], references: [id], onDelete: Cascade)
+  deckId      String
+  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
+  card        Card       @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  cardId      String
   assignedAt  DateTime   @default(now())
-  correct     Boolean
+  isCorrect   Boolean
 }
 
 model Account {
@@ -93,5 +86,7 @@ model User {
   image         String?
   password      String?
   role          UserRole  @default(USER)
+  decks         UserOnDecks[]
+  answers       Answer[]
   accounts      Account[]
 }

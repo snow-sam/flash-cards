@@ -1,17 +1,17 @@
 'use client';
 import Image from 'next/image';
 import { useState } from 'react';
-import { Carta as CartaPrisma } from '@prisma/client';
+import { Card } from '@prisma/client';
 import { motion } from 'framer-motion';
 import TinderCard from 'react-tinder-card';
 import { toast } from 'react-hot-toast';
 
 
-type CartaProps = {
-  carta: CartaPrisma,
+type CardProps = {
+  card: Card,
 }
 
-export const Carta = ({ carta }: CartaProps) => {
+export const CardComponent = ({ card }: CardProps) => {
   
   const [isDraggin, setIsDraggin] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
@@ -65,10 +65,10 @@ export const Carta = ({ carta }: CartaProps) => {
             style={{ backfaceVisibility: 'hidden' }}
             className="pressable absolute w-[100%] h-[100%] bg-neutral-800 text-white rounded-xl p-6"
           >
-            <span>{carta.pergunta}</span>
-            {carta.imageSvg && <Image
+            <span>{card.question}</span>
+            {card.imageSvg && <Image
               className="absolute bottom-6 right-6 w-8"
-              src={carta.imageSvg}
+              src={card.imageSvg}
               alt="logotipo da carta"
             />}
 
@@ -78,10 +78,10 @@ export const Carta = ({ carta }: CartaProps) => {
             style={{ backfaceVisibility: 'hidden', transform: `rotateY(180deg)` }}
             className="pressable absolute w-[100%] h-[100%] bg-neutral-800 text-white rounded-xl p-6"
           >
-            <span>{carta.resposta}</span>
-            {carta.imageSvg && <Image
+            <span>{card.answer}</span>
+            {card.imageSvg && <Image
               className="absolute bottom-6 right-6 w-8"
-              src={carta.imageSvg}
+              src={card.imageSvg}
               alt="logotipo da carta"
             />}
 
