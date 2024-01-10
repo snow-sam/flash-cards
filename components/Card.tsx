@@ -1,55 +1,43 @@
 'use client';
 import Image from 'next/image';
-import { useState } from 'react';
 import { Card } from '@prisma/client';
 import { motion } from 'framer-motion';
+import {useState} from 'react'
 import TinderCard from 'react-tinder-card';
-import { toast } from 'react-hot-toast';
 
 
 type CardProps = {
   card: Card,
+  cardReference: any,
+  swiped: (index: number) => void,
+  handleCardLeftScreen: (pos: string, index: number) => void,
+  index: number
 }
 
-export const CardComponent = ({ card }: CardProps) => {
-  
-  const [isDraggin, setIsDraggin] = useState(false);
+export const CardComponent = ({ card, cardReference, swiped, handleCardLeftScreen, index }: CardProps) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
 
   function handleFlip() {
-    if (!isAnimating && !isDraggin) {
+    if (!isAnimating) {
       setIsFlipped(!isFlipped);
       setIsAnimating(true);
     }
   }
 
-  const handleCardLeftScreen = (pos: string) => {
-    setIsDraggin(false);
-    const conf = {
-      id: Math.random().toString(),
-      duration: 1000,
-      style: { backgroundColor: '#121212', color: 'white' },
-    };
-
-    if (pos === 'left') toast.error('Que pena!', conf);
-    if (pos === 'right') toast.success('Boa!', conf);
-  };
-
   return (
     <TinderCard
+      ref={cardReference}
       className="absolute"
       preventSwipe={['up', 'down']}
       swipeRequirementType="position"
-      swipeThreshold = {20}
-      onSwipe={() => setIsDraggin(true)}
-      onCardLeftScreen={handleCardLeftScreen}
-      onSwipeRequirementUnfulfilled={() => setIsDraggin(false)}
-      onSwipeRequirementFulfilled={() => setIsDraggin(false)}
+      swipeThreshold={20}
+      onSwipe={() => swiped(index)}
+      onCardLeftScreen={(dir) => handleCardLeftScreen(dir, index)}
     >
       <motion.div
-        whileHover={{ scale: 1.05 }}
-        className="w-[260px] h-[360px] rounded-xl shadow-lg bg-neutral-800 shadow-black/30"
+        whileHover={{ rotate: 1.05 }}
+        className="w-[260px] h-[360px] rounded-xl shadow-sm bg-neutral-800 shadow-black/30"
         style={{ perspective: '1000px' }}
         onClick={handleFlip}
       >
