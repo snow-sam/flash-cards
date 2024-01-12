@@ -6,6 +6,6 @@ export const authRoutes = [
     "/auth/error",
 ]
 
-export const apiAuthPrefix = "/api/auth"
+export const apiAuthPrefix = "/api"
 
 export const DEFAULT_LOGIN_REDIRECT = "/";

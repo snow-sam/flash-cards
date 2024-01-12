@@ -32,11 +32,12 @@ model Card {
 }
 
 model UserOnDecks {
-  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user        User            @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      String
-  deck        Deck       @relation(fields: [deckId], references: [id], onDelete: Cascade)
+  deck        Deck            @relation(fields: [deckId], references: [id], onDelete: Cascade)
   deckId      String
-  assignedAt  DateTime   @default(now())
+  assignedAt  DateTime        @default(now())
+  lastViewAt  DateTime        @default(now())
 
   @@id([userId, deckId])
 }
