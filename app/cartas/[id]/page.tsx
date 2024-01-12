@@ -1,10 +1,23 @@
-import { CardsControl } from '@/components/cards-control';
+import { auth } from '@/auth';
+import FlashCardsContainer from '@/components/FlashCardsContainer';
 import { prisma } from '@/lib/prisma';
-import { ArrowLeft } from 'lucide-react';
-import Link from 'next/link';
+import axios from 'axios'
 
 
 async function getCards(deckId: string) {
+  const session = await auth()
+  console.log(session?.user.id, deckId)
+  fetch('http://localhost:3000/api/usersOnDecks', {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      userId: session?.user.id,
+      deckId: deckId,
+      lastViewAt: new Date(),
+    }),
+  });
 
   return await prisma.card.findMany({
     where: {
@@ -13,17 +26,12 @@ async function getCards(deckId: string) {
   })
 }
 
-export default async function FlashCardSession({ params }: { params: { id: string } }) {
+export default async function FlashCardsPage({ params }: { params: { id: string } }) {
 
   const cards = await getCards(params.id)
 
   return (
-    <div className="grid overflow-hidden place-items-center bg-neutral-200 w-full h-[100dvh] relative">
-      <Link href='/' className='absolute top-4 left-4 font-bold bg-white shadow-lg w-12 h-12 grid place-items-center rounded-full'>
-        <ArrowLeft/>
-      </Link>
-      <CardsControl cards={cards}/>
-    </div>
+    <FlashCardsContainer cards={cards} />
   );
 }
 

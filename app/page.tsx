@@ -9,7 +9,7 @@ async function getDecks() {
 
 export default async function Home() {
   const decks = await getDecks()
-
+  
   return (
     <div className="h-[100dvh] bg-[#f9f9f8]">
       <nav className="flex text-white items-center p-4 justify-end bg-neutral-900 w-full h-[68px]">
