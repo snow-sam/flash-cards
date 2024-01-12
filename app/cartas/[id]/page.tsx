@@ -1,13 +1,17 @@
 import { auth } from '@/auth';
 import FlashCardsContainer from '@/components/FlashCardsContainer';
 import { prisma } from '@/lib/prisma';
-import axios from 'axios'
+import { headers } from 'next/headers'
 
 
 async function getCards(deckId: string) {
+  const headersData = headers()
+  const host = headersData.get('host') ?? ''
+  const protocol = headersData.get('x-forwarded-proto') ?? host.startsWith('localhost') ? 'http' : 'https' 
+  const apiBase = `${protocol}://${host}`
+
   const session = await auth()
-  console.log(session?.user.id, deckId)
-  fetch('http://localhost:3000/api/usersOnDecks', {
+  fetch(`${apiBase}/api/usersOnDecks`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
