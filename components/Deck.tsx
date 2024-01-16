@@ -18,7 +18,7 @@ export function DeckComponent({ deck }: DeckProps) {
         <MoreHorizontal />
       </div>
       <div className='p-4 mb-4 border-2 border-[#7D6D6D] bg-[#ECE4E4] grid place-items-center rounded-full justify-self-center'>
-        <Image alt={deck.name} src={deck.imageSvg} width={30} height={30} />
+        <Image alt={deck.name} src={deck.imageSvg || ''} width={30} height={30} />
       </div>
       <div className="w-full text-center text-white">{deck.name}</div>
     </Link>
