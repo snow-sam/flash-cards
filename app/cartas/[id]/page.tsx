@@ -1,7 +1,5 @@
-import { auth } from '@/auth';
 import FlashCardsContainer from '@/components/FlashCardsContainer';
 import { prisma } from '@/lib/prisma';
-import { headers } from 'next/headers'
 
 
 async function getCards(deckId: string) {
